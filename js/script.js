@@ -1,22 +1,23 @@
 'use strict';
 (function(){ 
-	function Phone(brand, price, color, iWant) {
-		this.brand =  brand;
-		this.price = price;
-		this.color = color;
-		this.iWant = iWant || 'no';
+	function Button(text){
+		this.text = text || 'Hello';
 	}
 
-	Phone.prototype.printInfo = function() {
-		console.log('The phone brand is ' + this.brand + ', color is ' + this.color + ' and the price is ' + this.price + '.' + 'Did i want it? -' + this.iWant);
+	Button.prototype = {
+		create: function(){
+			var self = this;
+			this.element = document.createElement('button');
+			this.element.innerText = this.text;
+			this.element.addEventListener('click', function() {
+				alert(self.text);
+			});
+			document.body.appendChild(this.element);
+		}
 	}
 
-	var samsungGalaxyS6 = new Phone('Samsung', 800, 'black', 'maybe');
-	var iPhone6S = new Phone("Apple", 2250, "silver");
-	var onePlusOne = new Phone("OnePlus", 2099, "black");
+	var btn1 = new Button('Hello!');
 
-	samsungGalaxyS6.printInfo();
-	iPhone6S.printInfo();
-	onePlusOne.printInfo();
+	btn1.create();
 
 })();
